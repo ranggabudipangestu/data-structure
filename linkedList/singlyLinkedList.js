@@ -64,6 +64,47 @@ class LinkedList {
     return this
   }
 
+  reverse(){
+    if(!this.head.next){
+      return this.head
+    }
+
+    //[1, 2, 3]
+    let first = this.head //1
+    this.tail = first //1
+    let second = first.next //2
+
+    while(second){
+      
+      // console.log("test 1", first, 'test 2', second, 'test 3', second.next)
+      let temp = second.next //3
+      second.next = first //third = 1
+      first = second //first = 2
+      second = temp //second = 3
+
+      // PERULANGAN PERTAMA
+      // temp = second.next //3
+      // second.next = first //third = 1
+      // first = second //first = 2
+      // second = temp //second = 3
+      //[2,3,1]
+      
+      // PERULANGAN KEDUA
+      // temp = second.next // null
+      // second.next = first // 2
+      // first = second // 3
+      // second = temp // null
+      // PERULANGAN BERHENTI DISINI KETIKA SECOND = NULL
+
+    }
+    //[3, 2, 1]
+    this.head.next = null
+    this.head = first
+    // console.log(this)
+
+    return this
+  }
+
   _traverseToIndex(index){
     let counter = 0
     let currentNode = this.head
