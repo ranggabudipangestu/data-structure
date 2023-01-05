@@ -132,16 +132,18 @@ class LinkedList {
 }
 
 
-const myLinkedList = new DoublyLinkedList(10)
+const myLinkedList = new LinkedList(10)
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
 console.log(myLinkedList.printList())
 // myLinkedList.insert(1,25)
-myLinkedList.prepend(25)
-console.log(myLinkedList.printList())
+// myLinkedList.prepend(25)
+// console.log(myLinkedList.printList())
 // myLinkedList.remove(10)
 // myLinkedList.remove(3)
-myLinkedList.remove(0)
-myLinkedList.remove(1)
+// myLinkedList.remove(0)
+// myLinkedList.remove(1)
+// console.log(myLinkedList.printList())
+myLinkedList.reverse()
 console.log(myLinkedList.printList())

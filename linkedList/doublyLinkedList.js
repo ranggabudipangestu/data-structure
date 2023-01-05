@@ -117,8 +117,6 @@ class DoublyLinkedList {
     // console.log(this)
 
     return this
-
-
   }
 
   _traverseToIndex(index){
