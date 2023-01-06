@@ -1,6 +1,6 @@
 class LinkedlistNode{
-  private value:any
-  private next:any
+  public value:any
+  public next:any
 
   constructor(value:any){
     this.value = value
@@ -43,7 +43,6 @@ class Queue{
   }
 
   public dequeue(){
-    
     if(!this.first){
       this.last = this.first
       return 'Empty'
@@ -51,23 +50,36 @@ class Queue{
     this.first = this.first.next
     this.length --
     return this
+  }
 
+  public printList(){
+    const arr:Array<any> = []
+    let currentNode = this.first
+    while(currentNode !== null){
+      arr.push(currentNode.value)
+      currentNode = currentNode.next
+      
+    }
+    return arr
   }
 }
+
+
 
 const queue = new Queue(3)
 
 queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
+console.log(queue.printList())
 console.log(queue.enqueue(4))
-
-console.log(queue.peek())
 queue.dequeue()
-console.log("peek satu", queue.peek())
 queue.dequeue()
-console.log("peek dua",queue.peek())
 queue.dequeue()
-console.log("peek tiga", queue.peek())
 console.log(queue.dequeue())
 console.log(queue.peek())
+queue.enqueue(5)
+queue.enqueue(6)
+queue.enqueue(7)
+
+console.log(queue.printList())
