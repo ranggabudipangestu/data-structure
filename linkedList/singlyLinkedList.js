@@ -20,6 +20,7 @@ class LinkedList {
     this.tail.next = newNode
     this.tail = newNode
     this.length += 1
+    console.log(this)
     return this
   }
 
@@ -61,6 +62,7 @@ class LinkedList {
     const deletedItem = leader.next
     leader.next = deletedItem.next
     this.length--
+    console.log(this)
     return this
   }
 
@@ -132,10 +134,11 @@ class LinkedList {
 }
 
 
-const myLinkedList = new LinkedList(10)
-myLinkedList.append(5)
-myLinkedList.append(16)
-myLinkedList.prepend(1)
+const myLinkedList = new LinkedList(1)
+myLinkedList.append(2)
+myLinkedList.append(3)
+myLinkedList.append(4)
+// myLinkedList.prepend(1)
 console.log(myLinkedList.printList())
 // myLinkedList.insert(1,25)
 // myLinkedList.prepend(25)
@@ -145,5 +148,5 @@ console.log(myLinkedList.printList())
 // myLinkedList.remove(0)
 // myLinkedList.remove(1)
 // console.log(myLinkedList.printList())
-myLinkedList.reverse()
-console.log(myLinkedList.printList())
+// myLinkedList.reverse()
+// console.log(myLinkedList.printList())
