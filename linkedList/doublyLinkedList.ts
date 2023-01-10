@@ -7,17 +7,16 @@ class ListNode {
     this.next = null
     this.prev = null
   }
-  prevSetter(value:any){
+  setPrev(value:any){
     this.prev = value
   }
-  nextSetter(value:any){
+  setNext(value:any){
     this.next = value
   }
-  prevGetter(){
+  getPrev(){
     return this.prev
   }
-  
-  nextGetter(){
+  getNext(){
     return this.next
   }
 }
@@ -26,28 +25,26 @@ class DoublyLinkedList {
   private head:any = null
   private tail:any = null
   private length:number = 0
-  constructor(value:any) {
-    this.head = {
-      value,
-      next: null,
-      prev: null
-    }
+  constructor() {
+    this.head = null
     this.tail = this.head
-    this.length = 1
+    this.length = 0
   }
 
   append(value:any) { //menambahkan item di akhir
+    if(this._firstNode(value)) return this
     const newNode = new ListNode(value)
     this.tail.next = newNode
     this.tail = newNode
-    newNode.prevSetter(this.tail)
+    newNode.setPrev(this.tail)
     this.length += 1
     return this
   }
 
   prepend(value:any) { //menambahkan item di awal
+    if(this._firstNode(value)) return this
     const newNode = new ListNode(value)
-    newNode.nextSetter(this.head)
+    newNode.setNext(this.head)
     this.head.prev = newNode
     this.head = newNode
     this.length += 1
@@ -71,9 +68,10 @@ class DoublyLinkedList {
     const leader = this._traverseToIndex(index-1) // ambil data value sebelah kiri(VALUE: 1)
     const follower = leader.next // ambil data value sebelah kanan(VALUE: 10)
     leader.next = newNode //pointer next dari value sebelah kiri(1) adalah value yang diinsert(VALUE NEXT: 25)
-    newNode.prevSetter(leader) //pointer prev dari value yg diinsert adalah value sebelah kiri(VALUE PREV: 1)
-    newNode.nextSetter(follower) //pointer next dari value yg diinsert adalah value sebelah kanan(VALUE NEXT: 10)
+    newNode.setPrev(leader) //pointer prev dari value yg diinsert adalah value sebelah kiri(VALUE PREV: 1)
+    newNode.setNext(follower) //pointer next dari value yg diinsert adalah value sebelah kanan(VALUE NEXT: 10)
     follower.prev = newNode //pointer prev dari value sebelah kanan(10) adalah value yang diinsert(25)
+    console.log(follower.prev)
     this.length += 1
 
     return this
@@ -138,6 +136,21 @@ class DoublyLinkedList {
     return this
   }
 
+  private _firstNode(value:any){
+    if(this.length === 0){
+      this.head = {
+        value,
+        next: null,
+        prev: null
+      }
+      this.tail = this.head
+      this.length ++
+      return true
+    }else{
+      return false
+    }
+  }
+  
   private _traverseToIndex(index:number){
     let counter = 0
     let currentNode = this.head
@@ -163,20 +176,11 @@ class DoublyLinkedList {
 }
 
 
-const doublyLinkedList = new DoublyLinkedList(1)
-doublyLinkedList.append(2)
+const doublyLinkedList = new DoublyLinkedList()
 doublyLinkedList.append(3)
-// myLinkedList.prepend(1)
-// console.log(myLinkedList)
-// console.log(myLinkedList.printList())
-// myLinkedList.insert(1,25)
-// myLinkedList.prepend(25)
-console.log(doublyLinkedList.printList())
-// myLinkedList.remove(10)
-// myLinkedList.remove(3)
-// myLinkedList.remove(0)
-// myLinkedList.remove(1)
-// console.log(myLinkedList.printList())
+doublyLinkedList.insert(1,2)
+doublyLinkedList.prepend(1)
 
+console.log(doublyLinkedList.printList())
 doublyLinkedList.reverse()
 console.log(doublyLinkedList.printList())
