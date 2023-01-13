@@ -28,45 +28,44 @@ class BinarySearchTree {
     let currentNode = this.root
     while (currentNode) {
       if (value > currentNode.value) {
-        if(currentNode.value === value){
-          return this
-        }
+        if (currentNode.value === value) break
+
         if (!currentNode.right) {
           currentNode.right = newNode
-          return this
+          break
         }
         currentNode = currentNode.right
 
       } else if (currentNode.value > value) {
         if (!currentNode.left) {
           currentNode.left = newNode
-          return this
+          break
         }
         currentNode = currentNode.left
       }
     }
 
+    return this
   }
   lookup(value: any) {
     const data = this._traverseNode(this.root, value)
-    if(!data) return [false, null] 
+    if (!data) return [false, null]
     return [true, data]
   }
 
   private _traverseNode(parentValue: any, value: any) {
     let currentNode = parentValue
+
     while (currentNode) {
-      if(currentNode.value === value){
-        return currentNode
-      }
+      if (currentNode.value === value) break
       if (currentNode.value < value) {
         currentNode = currentNode.right
 
       } else if (currentNode.value > value) {
         currentNode = currentNode.left
       }
-    } 
-    
+    }
+
     return currentNode
 
   }
@@ -91,7 +90,7 @@ binarySearchTree.insert(7)
 binarySearchTree.insert(22)
 binarySearchTree.insert(19)
 
-const [lookup, data] = binarySearchTree.lookup(25)
+const [lookup, data] = binarySearchTree.lookup(23)
 console.log(lookup, data)
 
 console.log(JSON.stringify(binarySearchTree.getAllTree()))
