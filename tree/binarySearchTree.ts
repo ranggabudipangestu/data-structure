@@ -49,8 +49,8 @@ class BinarySearchTree {
   }
   lookup(value: any) {
     const data = this._traverseNode(this.root, value)
-    if (!data) return [false, null]
-    return [true, data]
+    if (!data) return false
+    return data
   }
 
   private _traverseNode(parentValue: any, value: any) {
@@ -67,7 +67,6 @@ class BinarySearchTree {
     }
 
     return currentNode
-
   }
 
   getAllTree() {
@@ -90,7 +89,7 @@ binarySearchTree.insert(7)
 binarySearchTree.insert(22)
 binarySearchTree.insert(19)
 
-const [lookup, data] = binarySearchTree.lookup(23)
-console.log(lookup, data)
+const data = binarySearchTree.lookup(23)
+console.log(data)
 
 console.log(JSON.stringify(binarySearchTree.getAllTree()))
